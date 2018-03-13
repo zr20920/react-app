@@ -22,7 +22,7 @@ class API extends Server {
         }
         throw err
       }
-    } catch (err) {
+    } catch(err) {
       throw err
     }
   }

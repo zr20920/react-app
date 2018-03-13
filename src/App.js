@@ -3,10 +3,11 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom'
+import asyncComponent from './utils/asyncComponent'
 
 import NavBar from './pages/navbar/navbar'
 import Home from './pages/home/home'
-import About from './pages/about/about'
+const About = asyncComponent(() => import('./pages/about/about'))
 
 const App = () => (
   <Router>
@@ -17,7 +18,7 @@ const App = () => (
       </div>
       <NavBar />
     </div>
-  </Router>  
+  </Router>
 )
 
 export default App
