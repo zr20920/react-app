@@ -1,24 +1,31 @@
-import React from 'react'
 import {
-  BrowserRouter as Router,
-  Route
+  BrowserRouter,
+  Route,
+  Switch,
+  Redirect
 } from 'react-router-dom'
-import asyncComponent from './utils/asyncComponent'
+import React, { Component } from 'react'
+import asyncComponent from '@/utils/asyncComponent'
 
-import NavBar from './pages/navbar/navbar'
-import Home from './pages/home/home'
-const About = asyncComponent(() => import('./pages/about/about'))
+import Navbar from './pages/navbar/navbar'
+import Home from '@/pages/home/home'
+const About = asyncComponent(() => import('@/pages/about/about'))
 
-const App = () => (
-  <Router>
-    <div className="container">
-      <div className="tab-panel">
-        <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-      </div>
-      <NavBar />
-    </div>
-  </Router>
-)
-
-export default App
+export default class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div className="container">
+          <div className="tab-panel">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/about" component={About} />
+              <Redirect to="/" />
+            </Switch>
+          </div>
+          <Navbar />
+        </div>
+      </BrowserRouter>
+    )
+  }
+}

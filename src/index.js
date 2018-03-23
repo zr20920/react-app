@@ -4,6 +4,13 @@ import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import './style/base.css'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const render = Comment => {
+  ReactDOM.render(
+    <Comment/>,
+    document.getElementById('root')
+  )
+}
+
+render(App)
 
 registerServiceWorker()
